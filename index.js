@@ -8,13 +8,15 @@ var newWord = true;
 var guessesRemaining = 10;
 
 // Words
-var words = ["Jurassic World", "Avengers", "Deadpool", "Incredibles"];
+var words = ["Jurassic World", "Avengers", "Deadpool", "Incredibles", "Back to the Future", "The Rocketeer", "Jumanji", "Cars", "Thor", "Iron Man", "Indiana Jones", "Sherlock Holmes", "Star Wars", "Solo", "Ready Player One", "Rampage", "Black Panther", "Superman", "Justice League", "Life of the Party"];
 var currentWord = "";
 
 function game() {
 
     // If this is a new word, then use the Word constructor
     if ( newWord ) {
+
+        guessesRemaining = 10;
 
         console.log("\r\nGuess the name of the movie\r\n");
 
@@ -47,8 +49,8 @@ function game() {
         // Reconstructing the word to display the current state
         currentWord.wordString();
 
-        // If a wrong letter is guessed && it's not a new word subtract from guesses remaining
-        if ( !currentWord.wordToGuess.toLowerCase().includes(guess.letter.toLowerCase()) && !newWord ) {
+        // If a wrong letter is guessed, subtract from guesses remaining
+        if ( !currentWord.wordToGuess.toLowerCase().includes(guess.letter.toLowerCase()) ) {
             guessesRemaining--;
             console.log("\r\n" + guessesRemaining + " guesses remaining!!!");
         }
@@ -56,13 +58,14 @@ function game() {
         // If the guesses remaining reaches 0, then game is over
         // Ask player if they want to play again
         if ( guessesRemaining === 0 ) {
-            console.log("\r\nGame Over!!\r\n");
+            console.log("\r\nSorry! The correct movie was " + currentWord.wordToGuess + "\r\n");
+            console.log("Game Over!!\r\n");
             playAgain();
         }
 
         // If the player guesses the whole word, display congrats message
         // Ask player if they want to play again
-        if ( currentWord.guessedState === currentWord.wordToGuess ) {
+        else if ( currentWord.guessedState === currentWord.wordToGuess ) {
             console.log("\r\nCONGRATS!! YOU WON!!\r\n");
             playAgain();
         }
