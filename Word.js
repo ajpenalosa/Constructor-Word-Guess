@@ -4,7 +4,6 @@ var Letter = require("./Letter.js");
 function Word( wordToGuess ) {
     this.wordToGuess = wordToGuess;
     this.wordLetters = [];
-    this.guessedLetters = 0;
 
     // Loop that makes each letter into an object and pushes it to the wordLetters array
     for ( var i = 0; i < this.wordToGuess.length; i++ ) {
@@ -30,9 +29,12 @@ function Word( wordToGuess ) {
         console.log(this.currentState);
     }
     
-    // this.guessedLetters = function( letterGuessed ) {
-    //     userGuess( letterGuessed );
-    // }
+    // Passes the guessed letter to the userGuess function to check if it's a match
+    this.guessedLetters = function( guessedLetter ) {
+        for ( var i = 0; i < this.wordToGuess.length; i++ ) {
+            this.wordLetters[i].userGuess(guessedLetter);
+        }
+    }
 }
 
 module.exports = Word;

@@ -13,8 +13,10 @@ function Letter ( letterToGuess ) {
     }
 
     // Changes state to true if letter is guessed
-    this.userGuess = function( ) {
-        this.guessed = true;
+    this.userGuess = function( guessedLetter ) {
+        if ( guessedLetter.toLowerCase() === this.letter.toLowerCase() ) {
+            this.guessed = true;
+        }
     }
 }
 

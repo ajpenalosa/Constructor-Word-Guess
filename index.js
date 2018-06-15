@@ -38,12 +38,9 @@ function game() {
     ]).then(guess => {
 
         // If a correct letter is guessed, change it to true
-        for ( var i = 0; i < currentWord.wordToGuess.length; i++ ) {
-            if ( currentWord.wordToGuess[i].toLowerCase() === guess.letter.toLowerCase() ) {
-                currentWord.wordLetters[i].userGuess();
-            }
-        }
-        
+        currentWord.guessedLetters(guess.letter);
+
+        // Console log empty space for readability
         console.log(" ");
 
         // Reconstructing the word to display the current state
