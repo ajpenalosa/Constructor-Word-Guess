@@ -1,0 +1,23 @@
+{
+  "name": "constructor-word-guess",
+  "version": "1.0.0",
+  "description": "To run the game, type in the following command in the terminal:",
+  "main": "index.js",
+  "dependencies": {
+    "inquirer": "^6.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajpenalosa/Constructor-Word-Guess.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajpenalosa/Constructor-Word-Guess/issues"
+  },
+  "homepage": "https://github.com/ajpenalosa/Constructor-Word-Guess#readme"
+}
