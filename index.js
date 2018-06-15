@@ -6,6 +6,8 @@ var Word = require("./Word.js");
 
 var newWord = true;
 var guessesRemaining = 10;
+var guessedArray = [];
+var correctGuesses = [];
 
 // Words
 var words = ["Jurassic World", "Avengers", "Deadpool", "Incredibles", "Back to the Future", "The Rocketeer", "Jumanji", "Cars", "Thor", "Iron Man", "Indiana Jones", "Sherlock Holmes", "Star Wars", "Solo", "Ready Player One", "Rampage", "Black Panther", "Superman", "Justice League", "Life of the Party"];
@@ -17,6 +19,8 @@ function game() {
     if ( newWord ) {
 
         guessesRemaining = 10;
+        guessedArray = [];
+        correctGuesses = [];
 
         console.log("\r\nGuess the name of the movie\r\n");
 
@@ -46,10 +50,23 @@ function game() {
         // Reconstructing the word to display the current state
         currentWord.wordString();
 
-        // If a wrong letter is guessed, subtract from guesses remaining
-        if ( !currentWord.wordToGuess.toLowerCase().includes(guess.letter.toLowerCase()) ) {
+        // Display message if player enters more than 1 letter
+        if ( guess.letter.length > 1 ) {
+            console.log("\r\nPlease type only 1 letter.");
+        }
+        // If the guessed letter is correct and has not been used before, add it to correctGuesses array
+        else if ( currentWord.wordToGuess.toLowerCase().includes(guess.letter.toLowerCase()) && correctGuesses.indexOf(guess.letter) === -1 ) {
+            correctGuesses.push(guess.letter);
+        }
+        // Else if the guessed letter is wrong and has not been used before, add it to guessedArray and subtract guesses Remaining
+        else if ( !currentWord.wordToGuess.toLowerCase().includes(guess.letter.toLowerCase()) && guessedArray.indexOf(guess.letter) === -1 && guess.letter.length === 1 ) {
+            guessedArray.push(guess.letter);
             guessesRemaining--;
-            console.log("\r\n" + guessesRemaining + " guesses remaining!!!");
+            console.log("\r\n" +  guess.letter.toUpperCase() + " is incorrect. You have " + guessesRemaining + " guesses remaining!!!");
+        }
+        // Else if the letter has been used before, display message telling the player it's been used already
+        else if ( guessedArray.indexOf(guess.letter) !== -1 ||  correctGuesses.indexOf(guess.letter) !== -1 ) {
+            console.log("\r\nYou have used \"" + guess.letter.toUpperCase() + "\" already. Please try another letter.");
         }
         
         // If the guesses remaining reaches 0, then game is over
